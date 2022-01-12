@@ -1,0 +1,13 @@
+***
+cd /var/cache/apt/
+sudo du -sh .
+sudo apt-get clean
+***
+sudo journalctl --disk-usage
+sudo journalctl --rotate
+sudo journalctl --vacuum-time 1d
+sudo journalctl --disk-usage
+***
+run: sudo ./clean_snap.sh
+check : du -sh /var/lib/snapd/snaps
+***
