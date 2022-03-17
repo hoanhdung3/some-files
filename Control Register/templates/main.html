@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+   <title>PM1200's Register Manager</title>
+   <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+   <!-- Optional theme -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+   <!-- Latest compiled and minified JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+
+<body>
+   <h1>PM1200's Register Status:</h1>
+   <h2>
+   	<form action = / method="POST">
+        	<label for="delay">Delay:</label>
+        	<input type="number" name="delay" id="delay" size="15">
+        	<input type="submit" name="submit" id="submit"/>
+	</form></h2>
+   <h3>
+      <p>Create a new Button to control Register</p>
+      <form action="/create/" method="post">
+         <label for="abb">Abbreviations</label>
+         <input type="abb" name="abb" value="" required>
+         <label for="regis">Register</label>
+         <input type="regis" name="regis" value="" required>
+         <label for="stt">Status</label>
+         <input type="stt" name="stt" value="" required>
+         <input type="submit" name="submit" id="submit"/>
+      </form> 
+   </h3>
+   {% for reg in regs %}
+   <h4>{{ regs[reg].name }}
+   {% if regs[reg].state == True %}
+      is <strong>reading</strong></h4><div class="row"><div class="col-md-2">
+      <a href="/{{reg}}/off" class="btn btn-block btn-lg btn-default" role="button">Unread</a></div></div>
+   {% else %}
+      is <strong>unreading</strong></h2><div class="row"><div class="col-md-2">
+      <a href="/{{reg}}/on" class="btn btn-block btn-lg btn-primary" role="button">Read</a></div></div>
+   {% endif %}
+   {% endfor %}
+</body>
+</html>
+
